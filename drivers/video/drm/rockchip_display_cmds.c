@@ -408,6 +408,8 @@ int lcd_setfg_color(const char *color)
 		lcd_setfg(0x00, 0x00, 0x00);
 	if (!strcmp(color ,"white"))
 		lcd_setfg(0xff, 0xff, 0xff);
+        if (!strcmp(color ,"amber"))
+                lcd_setfg(0xff, 0xbf, 0x00);
 	return 0;
 }
 

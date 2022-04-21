@@ -228,7 +228,7 @@ int rk_board_late_init(void)
 
 	/* show boot logo and version */
 	lcd_show_logo();
-	lcd_setfg_color("red");
+	lcd_setfg_color("amber");
 	//lcd_printf(0, 18 + disp_offs, 1, " %s", U_BOOT_VERSION);
 	lcd_printf(0, 19 + disp_offs, 1, " %s %s", U_BOOT_DATE, U_BOOT_TIME);
 
