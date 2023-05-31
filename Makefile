@@ -359,6 +359,8 @@ KBUILD_CPPFLAGS := -D__KERNEL__ -D__UBOOT__
 
 KBUILD_CFLAGS   := -Wall -Wstrict-prototypes \
 		   -Wno-format-security \
+		   -Wno-error=enum-int-mismatch \
+		   -Wno-error=maybe-uninitialized \
 		   -fno-builtin -ffreestanding
 KBUILD_CFLAGS += $(call cc-disable-warning, address-of-packed-member)		   
 KBUILD_CFLAGS	+= -fshort-wchar -Werror
