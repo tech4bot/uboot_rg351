@@ -150,7 +150,7 @@
 };
 
 &dsi {
-	status = "okay";
+	status = "disabled";
 
 	panel@0 {
 		compatible = "elida,kd35t133", "simple-panel-dsi";
