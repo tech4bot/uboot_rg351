@@ -12,10 +12,14 @@
 
 int do_hwrev(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
-	unsigned int hwrev_adc;
+	unsigned int hwrev_adc, hwdet_adc;
 
 	if (adc_channel_single_shot("saradc", 0, &hwrev_adc)) {
 		printf("board hw rev failed\n");
+		return CMD_RET_FAILURE;
+	}
+	if (adc_channel_single_shot("saradc", 2, &hwdet_adc)) {
+		printf("board hw det failed\n");
 		return CMD_RET_FAILURE;
 	}
 	/* RG351MP */
@@ -24,11 +28,18 @@ int do_hwrev(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 		env_set("dtb_uboot", "rg351mp-uboot.dtb");
 		env_set("dtb_kernel", "rk3326-rg351mp-linux.dtb");
 	}
-	/* RG351V */
+	/* RG351V and D007*/
 	else if (check_range(494, 534, hwrev_adc)) {
-		env_set("hwrev", "rg351v");
-		env_set("dtb_uboot", "rg351v-uboot.dtb");
-		env_set("dtb_kernel", "rk3326-rg351v-linux.dtb");
+		if (check_range(600, 1100, hwdet_adc)) {
+			env_set("hwrev", "d007");
+			env_set("dtb_uboot", "rk3326-d007-linux.dtb");
+			env_set("dtb_kernel", "rk3326-d007-linux.dtb");
+		}
+		else {
+			env_set("hwrev", "rg351v");
+			env_set("dtb_uboot", "rg351v-uboot.dtb");
+			env_set("dtb_kernel", "rk3326-rg351v-linux.dtb");
+		}
 	}
 	/* RG351P */
 	else if (check_range(655, 695, hwrev_adc)) {
