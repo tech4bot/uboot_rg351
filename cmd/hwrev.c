@@ -22,6 +22,12 @@ int do_hwrev(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 		printf("board hw det failed\n");
 		return CMD_RET_FAILURE;
 	}
+	/* R50S */
+	if (check_range(40, 126, hwrev_adc)) {
+		env_set("hwrev", "r50s");
+		env_set("dtb_uboot", "rg351mp-uboot.dtb");
+		env_set("dtb_kernel", "rk3326-r50s-linux.dtb");
+	}
 	/* RG351MP */
 	if (check_range(146, 186, hwrev_adc)) {
 		env_set("hwrev", "rg351mp");

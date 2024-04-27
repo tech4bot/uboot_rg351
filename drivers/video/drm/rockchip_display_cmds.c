@@ -46,6 +46,10 @@ int lcd_getrot(void)
 		case MODEL_RG351P:
 			default_rot = LCD_ROTATE_270;
 		break;
+
+		case MODEL_R50S:
+			default_rot = LCD_ROTATE_90;
+		break;
 			
 		case MODEL_RG351MP:
 		case MODEL_RG351V:

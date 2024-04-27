@@ -10,6 +10,7 @@ enum rg351_rev{
 	MODEL_RG351P = 0,
 	MODEL_RG351V,
 	MODEL_RG351MP,
+	MODEL_R50S,
 };
 
 enum logo_storage {
